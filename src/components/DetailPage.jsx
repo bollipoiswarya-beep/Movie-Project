@@ -6,7 +6,7 @@ import Rating from './Rating.jsx';
 
 function DetailPage({ movie, apiKey, onBack }) {
   const [detail, setDetail] = useState(movie);
-  const [cast, setCast] = useState(movie.cast?.map((name) => ({ name, character: 'Cast member' })) || []);
+  const [cast, setCast] = useState((movie.cast || []).map((person) => typeof person === 'string' ? { name: person, character: 'Cast member', profile: null } : person));
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
